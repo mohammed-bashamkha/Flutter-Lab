@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     Expanded musicBtn(int soundNumber, String btnText, Color btnColor) {
       return Expanded(
         child: Padding(
-          padding: const EdgeInsets.only(bottom: 1.0),
+          padding: const EdgeInsets.only(bottom: 2.0),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Color.fromARGB(255, 93, 153, 123),
@@ -64,7 +64,7 @@ class MyApp extends StatelessWidget {
             children: [
               musicBtn(1, 'Vivo', Colors.red),
               musicBtn(2, 'Huawei', Colors.blue),
-              musicBtn(3, 'Nokia', Colors.green),
+              musicBtn(3, 'Nokia', Colors.pink),
               musicBtn(4, 'Itel', Colors.yellow),
               musicBtn(5, 'LG', Colors.orange),
               musicBtn(6, 'Samsung', Colors.purple),
