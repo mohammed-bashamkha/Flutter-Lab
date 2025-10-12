@@ -14,10 +14,11 @@ class GetApi extends StatelessWidget {
         title: const Text(
           'Get User Info From API',
           style: TextStyle(
-            backgroundColor: Colors.blueGrey,
             color: Colors.black87,
           ),
         ),
+        centerTitle: true,
+        backgroundColor: Colors.amberAccent,
       ),
       body: FutureBuilder<User>(
         future: fetchUser(),
@@ -25,11 +26,11 @@ class GetApi extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text('أطخ ثدح: ${snapshot.error}'));
+            return Center(child: Text('Error:${snapshot.error}'));
           } else if (snapshot.hasData) {
             final user = snapshot.data!;
             return Padding(
-              padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
               child: Card(
                 elevation: 4,
                 shape: RoundedRectangleBorder(
@@ -61,7 +62,7 @@ class GetApi extends StatelessWidget {
 
 Future<User> fetchUser() async {
   final response = await http.get(
-    Uri.parse('https://jsonplaceholder.typicode.com/users/1'),
+    Uri.parse('https://jsonplaceholder.typicode.com/users/9'),
   );
 
   if (response.statusCode == 200) {
