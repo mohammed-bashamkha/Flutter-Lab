@@ -13,9 +13,7 @@ class GetApi extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           'Get User Info From API',
-          style: TextStyle(
-            color: Colors.black87,
-          ),
+          style: TextStyle(color: Colors.black87),
         ),
         centerTitle: true,
         backgroundColor: Colors.amberAccent,
@@ -30,7 +28,10 @@ class GetApi extends StatelessWidget {
           } else if (snapshot.hasData) {
             final user = snapshot.data!;
             return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 32.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24.0,
+                vertical: 32.0,
+              ),
               child: Card(
                 elevation: 4,
                 shape: RoundedRectangleBorder(
@@ -62,7 +63,7 @@ class GetApi extends StatelessWidget {
 
 Future<User> fetchUser() async {
   final response = await http.get(
-    Uri.parse('https://jsonplaceholder.typicode.com/users/9'),
+    Uri.parse('http://192.168.1.7:8000/api/user/1'),
   );
 
   if (response.statusCode == 200) {
