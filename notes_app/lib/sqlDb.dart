@@ -27,8 +27,8 @@ class Sqldb {
   _onCreate(Database db, int version) async {
     await db.execute('''
     CREATE TABLE "notes" (
-      id INTEGER AUTOINCREMENT NOT NULL PRIMARY KEY ,
-      notes TEXT NOT NULL
+      "id" INTEGER AUTOINCREMENT NOT NULL PRIMARY KEY ,
+      "note" TEXT NOT NULL
     )
 ''');
     print('Create Table');
