@@ -16,18 +16,19 @@ class Sqldb {
   intialDb() async {
     String databasePath = await getDatabasesPath();
     String path = join(databasePath, 'notes_app.db');
-    Database mydb = await openDatabase(path, onCreate: _onCreate, version: 1, onUpgrade: _onUpdate);
+    Database mydb = await openDatabase(path, onCreate: _onCreate, version: 2, onUpgrade: _onUpdate);
     return mydb;
   }
 
-  _onUpdate(Database db, int oldVersion, int newVersion) {
-    //database upgrade
+  _onUpdate(Database db, int oldVersion, int newVersion)  async{
+    await db.execute('ALTER TABLE notes ADD COLUMN title TEXT');
+    await db.execute('ALTER TABLE notes ADD COLUMN color TEXT');
   }
 
   _onCreate(Database db, int version) async {
     await db.execute('''
     CREATE TABLE "notes" (
-      "id" INTEGER AUTOINCREMENT NOT NULL PRIMARY KEY ,
+      "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
       "note" TEXT NOT NULL
     )
 ''');
@@ -58,4 +59,8 @@ class Sqldb {
     return response;
   }
 
+  Future<List<Map>> readDataApp() async {
+    List<Map> response = await readData("SELECT * FROM notes");
+    return response;
+  }
 }
